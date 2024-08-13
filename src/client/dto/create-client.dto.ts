@@ -3,16 +3,13 @@ import { Type } from 'class-transformer';
 import { ResponsavelDto } from './responsavel.dto';
 
 export class CreateClientDto {
-  @IsString()
-  @IsNotEmpty()
-  codigoSequencial: string;
 
   @IsString()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   cnpj: string;
 
   @IsString()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   razaoSocial: string;
 
   @IsString()
@@ -20,42 +17,42 @@ export class CreateClientDto {
   nomeFantasia: string;
 
   @IsString()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   cep: string;
 
   @IsString()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   endereco: string;
 
   @IsString()
   complemento?: string;
 
   @IsString()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   numeroEmpresarial: string;
 
   @IsString()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   bairro: string;
 
   @IsString()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   cidade: string;
 
   @IsString()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   estado: string;
 
   @IsString()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   telefone: string;
 
   @IsString()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   celular: string;
 
   @IsString()
-  @IsNotEmpty()
+  // @IsNotEmpty()
   email: string;
 
   @IsArray()

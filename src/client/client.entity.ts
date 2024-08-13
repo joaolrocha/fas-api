@@ -5,14 +5,12 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Responsavel } from './responsavel.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity('clients')
 export class Client {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  codigoSequencial: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string = uuidv4(); 
 
   @Column()
   cnpj: string;

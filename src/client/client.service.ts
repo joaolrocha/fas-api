@@ -17,6 +17,7 @@ export class ClientService {
   async create(createClientDto: CreateClientDto): Promise<Client> {
     try {
       const client = this.clientRepository.create(createClientDto);
+      console.log(client)
       const savedClient = await this.clientRepository.save(client);
       this.logger.log(`Client created with ID: ${savedClient.nomeFantasia}`);
       return savedClient;
@@ -37,7 +38,7 @@ export class ClientService {
     }
   }
 
-  async findOne(id: number): Promise<Client> {
+  async findOne(id: string): Promise<Client> {
     try {
       const client = await this.clientRepository.findOne({ where: { id }, relations: ['responsaveis'] });
       if (client) {
@@ -53,7 +54,7 @@ export class ClientService {
     }
   }
 
-  async update(id: number, updateClientDto: UpdateClientDto): Promise<Client> {
+  async update(id: string, updateClientDto: UpdateClientDto): Promise<Client> {
     try {
       await this.clientRepository.update(id, updateClientDto);
       const updatedClient = await this.clientRepository.findOne({ where: { id }, relations: ['responsaveis'] });
