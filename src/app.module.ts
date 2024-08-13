@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ClientModule } from './client/client.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true, // use com cuidado em produção; pode criar/migrar tabelas automaticamente
     }),
+    ClientModule,
   ],
 })
 export class AppModule {}
