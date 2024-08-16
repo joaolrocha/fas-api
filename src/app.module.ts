@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientModule } from './client/client.module';
+import { ConsultorModule } from './consultor/consultor.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ClientModule } from './client/client.module';
       synchronize: true, // use com cuidado em produção; pode criar/migrar tabelas automaticamente
     }),
     ClientModule,
+    ConsultorModule,
   ],
 })
 export class AppModule {}
