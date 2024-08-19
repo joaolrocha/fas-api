@@ -113,4 +113,9 @@ export class CreateConsultorDto {
   @IsString()
   @IsOptional()
   emailTotvs?: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+
 }

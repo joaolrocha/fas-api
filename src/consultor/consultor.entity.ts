@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   BeforeInsert,
 } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 
 @Entity('consultores')
@@ -66,6 +67,17 @@ export class Consultor {
 
   @Column({ nullable: true })
   emailTotvs: string;
+
+  @Column({ select: false }) // A senha não será selecionada por padrão
+  password: string;
+
+  @BeforeInsert()
+  async hashPassword() {
+    if (this.password) {
+      const salt = await bcrypt.genSalt();
+      this.password = await bcrypt.hash(this.password, salt);
+    }
+  }
 
   @BeforeInsert()
   generateId() {
