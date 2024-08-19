@@ -9,5 +9,6 @@ import { CnpjModule } from 'src/common/modules/cpnj.module';
   imports: [TypeOrmModule.forFeature([Consultor]), CnpjModule],
   controllers: [ConsultorController],
   providers: [ConsultorService],
+  exports: [ConsultorService],  // Adicione esta linha para exportar o ConsultorService
 })
 export class ConsultorModule {}

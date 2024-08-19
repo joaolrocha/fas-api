@@ -3,6 +3,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   BeforeInsert,
+  BeforeUpdate,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
@@ -68,10 +69,11 @@ export class Consultor {
   @Column({ nullable: true })
   emailTotvs: string;
 
-  @Column({ select: false }) // A senha não será selecionada por padrão
+  @Column({ select: false })  // A senha não é selecionada por padrão
   password: string;
 
   @BeforeInsert()
+  @BeforeUpdate()
   async hashPassword() {
     if (this.password) {
       const salt = await bcrypt.genSalt();

@@ -85,4 +85,25 @@ export class ConsultorService {
       throw new InternalServerErrorException('Erro ao excluir consultor');
     }
   }
+  async findOneByEmail(email: string, includePassword = false): Promise<Consultor | undefined> {
+    this.logger.log(`Procurando consultor com email: ${email}`);
+    
+    const queryBuilder = this.consultorRepository.createQueryBuilder('consultor');
+
+    if (includePassword) {
+      queryBuilder.addSelect('consultor.password'); // Certifique-se de que a senha está sendo selecionada
+    }
+
+    queryBuilder.where('consultor.emailParticular = :email', { email });
+
+    const consultor = await queryBuilder.getOne();
+
+    if (consultor) {
+      this.logger.log(`Consultor encontrado: ${consultor.nomeCompleto}`);
+    } else {
+      this.logger.warn(`Consultor com email ${email} não encontrado`);
+    }
+
+    return consultor;
+  }
 }
