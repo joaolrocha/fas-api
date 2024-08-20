@@ -34,14 +34,24 @@ export class AuthService {
       throw new UnauthorizedException('Credenciais inválidas');
     }
   }
-  
+
   async login(consultor: any) {
-    this.logger.log(`Gerando token JWT para o consultor: ${consultor.email}`);
-    const payload = { email: consultor.email, sub: consultor.id };
-    const token = this.jwtService.sign(payload);
-    this.logger.log(`Token JWT gerado com sucesso`);
-    return {
-      access_token: token,
-    };
+    this.logger.log(`Tentando logar consultor: ${JSON.stringify(consultor)}`);
+
+    if (consultor && consultor.emailParticular) { // Corrigido para acessar emailParticular
+      this.logger.log(`Gerando token JWT para o consultor: ${consultor.emailParticular}`);
+      const payload = { email: consultor.emailParticular, sub: consultor.id };
+      const token = this.jwtService.sign(payload);
+      this.logger.log(`Token JWT gerado com sucesso`);
+
+      return {
+        access_token: token,
+        userName: consultor.nomeCompleto,
+      };
+    } else {
+      this.logger.error('Consultor inválido ou email não fornecido corretamente');
+      throw new UnauthorizedException('Credenciais inválidas');
+    }
   }
 }
+
