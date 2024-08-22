@@ -116,6 +116,11 @@ export class CreateConsultorDto {
 
   @IsString()
   @IsNotEmpty()
+  emailFas?: string;
+
+
+  @IsString()
+  @IsNotEmpty()
   password: string;
 
 }

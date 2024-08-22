@@ -59,6 +59,9 @@ export class Consultor {
   @Column()
   emailParticular: string;
 
+  @Column()
+  emailFas: string;
+
   // Dados Totvs
   @Column({ type: 'boolean', default: false })
   vinculadoTotvs: boolean;

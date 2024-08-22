@@ -94,7 +94,7 @@ export class ConsultorService {
       queryBuilder.addSelect('consultor.password'); // Certifique-se de que a senha está sendo selecionada
     }
 
-    queryBuilder.where('consultor.emailParticular = :email', { email });
+    queryBuilder.where('consultor.emailFas = :email', { email });
 
     const consultor = await queryBuilder.getOne();
 
