@@ -4,9 +4,11 @@ import {
   PrimaryGeneratedColumn,
   BeforeInsert,
   BeforeUpdate,
+  OneToMany,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
+import { Projeto } from 'src/projects/projects.entity';
 
 @Entity('consultores')
 export class Consultor {
@@ -74,6 +76,9 @@ export class Consultor {
 
   @Column({ select: false })  // A senha não é selecionada por padrão
   password: string;
+
+  @OneToMany(() => Projeto, (projeto) => projeto.gerente)
+  projetos: Projeto[];
 
   @BeforeInsert()
   @BeforeUpdate()
